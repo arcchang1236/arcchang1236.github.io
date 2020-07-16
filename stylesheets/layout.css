@@ -415,16 +415,30 @@ span.rzm_importo:hover,.rzm_timeline-panel-ul span.importo:hover{
  	====6.0 Clients Area====  
 ========================================*/
 .rzm_client p{
-	font-size:28px;
-	color:#404040;
+	font-size:20px;
+	color:#080808;
 	font-family: 'Lato', sans-serif;
-	margin: 50px 0 30px 0;
+	margin: 10px 0 10px 0;
 	font-weight:300;
 }
 .rzm_client small{
 	font-size:16px;
 	color:#808080;
 	font-family: 'Lato', sans-serif; 
+	font-weight:700;
+}
+.rzm_client h2{
+	font-size:16px;
+	color:#080808;
+	font-family: 'Lato', sans-serif; 
+	margin: 10px 0 0 0;
+	font-weight:700;
+}
+.rzm_client h3{
+	font-size:16px;
+	color:#080808;
+	font-family: 'Lato', sans-serif; 
+	margin: 30px 0 0 0;
 	font-weight:700;
 }
 .rzm_client_img{

@@ -28,7 +28,7 @@
 <link rel="stylesheet" type="text/css" href="image_gallery/css/jquery.fancybox.css">
 <link rel="stylesheet" href="image_gallery/css/styles.css">
     
-<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
 
  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -66,10 +66,10 @@
              <div id="slidemenu" class="navbar-default navbar-inverse">
                     <ul class="nav navbar-nav primary">
                
-                    <li><a href="#home">About </a></li>
+                    <li><a href="#home">Bio</a></li>
                     <li><a href="#experience">Experience</a></li>
-                    <li><a href="#client">Clients</a></li>
-                    <li><a href="#testimonial">Testimonial</a></li>
+                    <li><a href="#client">Publications</a></li>
+                    <li><a href="#testimonial">Side Projects</a></li>
                     
                   </ul>
              </div>
@@ -99,15 +99,15 @@
           <div class="rzm_main_menu hidden-sm hidden-xs">
               <ul class="primary">
            
-                <li class="first"><a href="#home">About </a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#client">Clients</a></li>
-                <li><a href="#testimonial">Testimonial</a></li>
+                <li class="first"><a href="#home">Bio</a></li>
+                <li><a href="#experience">Work Experience</a></li>
+                <li><a href="#client">Publications</a></li>
+                <li><a href="#testimonial">Side Projects</a></li>
                 <li><a href="#home" class="go_to_top"><i class="fa fa-arrow-up" aria-hidden="true"></i> Top <i class="fa fa-arrow-up" aria-hidden="true"></i></a></li>
               </ul>
               
               <div class="social_nav">
-                <a href="https://github.com/arcchang1236/"><i class="fa fa-address-card" aria-hidden="true"></i></a>
+                <a href="https://drive.google.com/file/d/1wHTb6iNwR9DYxGACOCdFIg319MoCxAzI/view"><i class="fa fa-address-card" aria-hidden="true"></i></a>
                 <a href="https://github.com/arcchang1236/"><i class="fa fa-github" aria-hidden="true"></i></a>
                 <a href="https://www.linkedin.com/in/arcchang1236/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
                 <a href="https://www.instagram.com/arcchang1236/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
@@ -126,14 +126,23 @@
             <p>Software Engineer</p>
       </div>
       
-      <h1 class="title">About Me</h1>
+      <h1 class="title">Bio</h1>
      
       <!-- Start About section -->
       <div class="col-md-12 col-sm-12 col-xs-12  omega  about">
-        <p class="about_info"> <a href="#">Twitter</a> <a href="#">contact.</a> </p>
+        <p class="about_info">
+          I am a 
+          <strong><a target="_blank" href="http://web-en.cs.nthu.edu.tw/bin/home.php">Computer Science</a></strong>
+            undergraduated student at 
+            <strong><a target="_blank" href="http://nthu-en.web.nthu.edu.tw/bin/home.php">National Tsing Hua University</a></strong>
+            . Now I am working with Prof. 
+            <strong><a target="_blank" href="http://www.cs.nthu.edu.tw/~htchen/">Hwan-Tzong Chen</a></strong>
+            . My research mainly focus on deep Learning and its applications in Computer Vision, Machine Learning and Robotics. In particular, I am interested in reinforcement learning and interacting with environment via vision, language and action.
+          
+        </p>
         
         <div class="rzm_button">
-            <a href="" class="btn btn-sm btn-default"><i class="fa fa-download" aria-hidden="true"></i>Resume</a>
+            <a href="https://drive.google.com/file/d/1wHTb6iNwR9DYxGACOCdFIg319MoCxAzI/view?usp=sharing" class="btn btn-sm btn-default"><i class="fa fa-download" aria-hidden="true"></i>Curriculum Vitae</a>
         </div>
 
       </div>
@@ -267,18 +276,41 @@
    
    <!-- Start Client section -->
     <section class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3 rzm_client" id="client">
-    	<h1 class="title">Clients</h1>
-        <p>Had the privilege to work with companies such as Adobe, Udemy, Puma, Google, GravityPayments & more.</p>
-        <small>Also featured in Behance, SitePoint, Envato, DesignMag, Dribbble etc.</small>
-        <div class="rzm_client_img">       
+    	<h1 class="title">Publications</h1>
+        
+        <div class="pubwrap">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="pubimg">
+                <img src="img/eccv2020.png" height="200" width="250">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <div class="pub">
+                <div>
+                  <p><strong>Learning Camera-Aware Noise Models</strong></p>
+                </div>
+                <div>
+                  <small><u>Ke-Chi Chang</u>, Ren Wang, Hung-Jin Lin, Yu-Lun Liu, Chia-Ping Chen, Yu-Lin Chang, Hwann-Tzong Chen</small>
+                </div>
+                <div>
+                  <h2>ECCV 2020</h2>
+                </div>
+                <div>  
+                  <h3><a href="">[Project Page]</a><a href="">[PDF]</a></h3>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
     </section>
    <!-- End Client section -->
 
 
    <!-- Start Testimonial section -->
     <section class="col-md-9 col-sm-12 col-xs-12 col-md-offset-3 rzm_Testimonial" id="testimonial">
-    	<h1 class="title">Testimonial</h1>
+    	<h1 class="title">Side Projects</h1>
         <div class="rzm_testimonial_content">
               <div id="carousel" class="carousel slide" data-ride="carousel"> <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -292,13 +324,16 @@
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="thumbnail adjust1">
-                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive img-circle" src="img/testimonial_1.jpg" alt=""> </div>
+                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive" src="img/umbo.png" alt=""> </div>
                           <div class="col-md-10 col-sm-10 col-xs-12">
                             <div class="caption">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+                              <p>We can get competitive results on supervised
+                                  method compared with state-of-art method. For
+                                  our semi-supervised method, we have some experiments to
+                                  prove the feasibility of our design.</p>
                               <blockquote class="adjust2">
-                                <p>Daniel Ray</p>
-                                <small>CEO, GravityPayments</small> </blockquote>
+                                <p>Multi-person 3D Pose Estimation with Umbo CV</p>
+                                <small>Nov 2018 - Aug 2019</small> </blockquote>
                             </div>
                           </div>
                         </div>
@@ -309,13 +344,13 @@
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="thumbnail adjust1">
-                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive img-circle" src="img/testimonial_2.jpg" alt=""> </div>
+                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive" src="img/artc.png" alt=""> </div>
                           <div class="col-md-10 col-sm-10 col-xs-12">
                             <div class="caption">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+                              <p>Lort ut labore et ation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
                               <blockquote class="adjust2">
-                                <p>Steven M.</p>
-                                <small>Marketing Administrator, Hoslk llc</small> 
+                                <p>ARTC</p>
+                                <small>Mar 2018 - Nov 2018</small> 
                               </blockquote>
                             </div>
                           </div>
@@ -327,13 +362,13 @@
                     <div class="row">
                       <div class="col-xs-12">
                         <div class="thumbnail adjust1">
-                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive img-circle" src="img/testimonial_3.jpg" alt=""> </div>
+                          <div class="col-md-2 col-sm-2 col-xs-12"> <img class="media-object img-rounded img-responsive" src="img/itri.jpg" alt=""> </div>
                           <div class="col-md-10 col-sm-10 col-xs-12">
                             <div class="caption">
-                              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat..</p>
+                              <p>Lorem ipsum dolor sit amet, coaliqua. Ut enim ad minim veniam, quis nostrud exercitat..</p>
                               <blockquote class="adjust2">
-                                <p>D. Riccardi</p>
-                                <small>HR Administrator, Tubliv llc</small> 
+                                <p>ITRI</p>
+                                <small>Sep 2017 - Aug 2018</small> 
 						    </blockquote>
                             </div>
                           </div>
@@ -361,7 +396,7 @@
         	<div class="container">
                 <h4>Find Me on</h4>
                 <div class="rez_footer_social">
-                        <a href="https://github.com/arcchang1236/"><i class="fa fa-address-card" aria-hidden="true"></i></a>
+                        <a href="https://drive.google.com/file/d/1wHTb6iNwR9DYxGACOCdFIg319MoCxAzI/view"><i class="fa fa-address-card" aria-hidden="true"></i></a>
                         <a href="https://github.com/arcchang1236/"><i class="fa fa-github" aria-hidden="true"></i></a>
                         <a href="https://www.linkedin.com/in/arcchang1236/"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
                         <a href="https://www.instagram.com/arcchang1236/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
