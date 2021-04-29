@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>食尚玩家工具箱</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link rel="shortcut icon" href="icon.png">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+	<div id="clock" class="light">
+		<div class="display">
+			<div class="weekdays"></div>
+			<div class="ampm"></div>
+			<div class="alarm"></div>
+			<div class="digits"></div>
+		</div>
+	</div>
+
+	<div class="input-holder">
+		<!-- Start -->
+		<div class="input-start">
+			<a class="button btn_start"> 開始工作囉 </a>
+		</div>
+		<!-- AD -->
+		<!-- <div class="input-ad">
+			<a class="button btn_ad_start"> 廣告囉 </a>
+		</div> -->
+		<!-- Text -->
+		<div class="input-text">
+			<input class="text-minute" id='input-text-id'>
+			<a class="button btn_enter">Enter</a>			
+		</div>
+	</div>
+
+	<div class="logs-holder">
+		<table id="myTable">
+			<tr>
+				<td>時間</td>
+				<td>文字</td>
+			</tr>
+		</table>
+	</div>
+	<div class="output-holder">
+		<a class="button btn_copy">搞定啦就是這麼簡單 (會複製結果到剪貼簿，跳出 toast 通知)</a>
+	</div>
+
+	<!-- JavaScript Includes -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+	<script src="script.js"></script>
+</body>
+</html>
+
+
+<!-- 
+
+v1.0
+	* 廣告開始:記錄當下時間，廣告結束:中間時間加入table
+	* 編輯時可以清空文字
+	* 每分鐘紀錄提醒 (如果在編輯時不能衝突，導致重新輸入文字)
+	* 開始工作囉 btn (按下後開始提醒，然後要設定不能再按)
+	* table 好看點
+	* responsive
+	* 手機可以跳出去
+
+ -->
+
