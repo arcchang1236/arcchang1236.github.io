@@ -73,6 +73,11 @@ $(function(){
         ampm.text(now[7]+now[8]);
         // Schedule this function to be run again in 1 sec
 
+        if(now[4]==0 && now[5] == 0){
+            // console.log("!!!!")
+            window.navigator.vibrate(200);
+        }
+
         if(ad_flag == 1){
             if(now[4]==0 && now[5] == 0){
                 // 每過一分鐘+一個空白
