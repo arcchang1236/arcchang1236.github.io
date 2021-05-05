@@ -15,6 +15,31 @@
 	General Styles
 --------------------------*/
 
+table {
+	width: 100%;
+	font-family: "Microsoft JhengHei", "FangSong", Arial, serif;
+	font-weight:bold;
+}
+
+/* nth-child(1) = the first td in each tr */
+td:nth-child(1) {
+	width: 20%;
+	background: #ddd;
+}
+  
+/* the second */
+td:nth-child(2) {
+	width: 60%;
+	background: #ccc;
+}
+
+
+td:nth-child(3) {
+	width: 20%;
+	text-align: left;
+}
+
+
 
 html{
 	background:#dbe4e6;
@@ -30,6 +55,12 @@ body{
 a, a:visited {
 	outline:none;
 	color:#389dc1;
+}
+
+
+input {
+	height:30px;
+	width: 90%;
 }
 
 a:hover{
@@ -49,7 +80,7 @@ section, footer, header, aside{
 #clock{
 	width:370px;
 	padding:40px;
-	margin:100px auto 60px;
+	margin:20px auto 20px;
 	position:relative;
 }
 
@@ -388,32 +419,51 @@ section, footer, header, aside{
 --------------------------*/
 
 
+.text-minute{
+	width: 60%;
+}
+
 .input-holder{
 	text-align:center;
-	padding-bottom:100px;
+	padding-bottom:25px;
+}
+
+.input-start{
+	text-align:center;
+	padding-bottom:5px;
+}
+
+.input-ad{
+	text-align:center;
+	padding-bottom:5px;
 }
 
 .logs-holder{
 	text-align:center;
-	padding-bottom:100px;
+	padding-bottom:25px;
 }
 
 .output-holder{
 	text-align:center;
-	padding-bottom:100px;
+	padding-bottom:10px;
+}
+
+table{
+	margin-left:auto; 
+	margin-right:auto;
 }
 
 #myTable{
-	text-align:left;
-	padding-bottom:100px;
+	text-align:center;
+	padding-bottom:10px;
 }
 
 a.button{
 	background-color:#f6a7b3;
 	
-	background-image:-webkit-linear-gradient(top, #f6a7b3, #f0a3af);
+	/* background-image:-webkit-linear-gradient(top, #f6a7b3, #f0a3af);
 	background-image:-moz-linear-gradient(top, #f6a7b3, #f0a3af);
-	background-image:linear-gradient(top, #f6a7b3, #f0a3af);
+	background-image:linear-gradient(top, #f6a7b3, #f0a3af); */
 
 	border:1px solid #eb9ba7;
 	border-radius:2px;
@@ -430,6 +480,23 @@ a.button{
 a.button:hover{
 	opacity:0.9;
 }
+
+a.btn_start{
+	background-color:#ff0000;
+}
+
+a.btn_ad_start{
+	background-color:#ffbb00;
+}
+
+a.btn_ad_end{
+	background-color:#ffbb00;
+}
+
+a.btn_enter{
+	background-color:#000000;
+}
+
 
 
 /*----------------------------

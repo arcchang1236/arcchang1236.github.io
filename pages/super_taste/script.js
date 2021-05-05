@@ -1,5 +1,7 @@
 $(function(){
 
+    var ad_flag = 0;
+
     // Cache some selectors
     var clock = $('#clock'),
         alarm = clock.find('.alarm'),
@@ -70,6 +72,26 @@ $(function(){
         // Set the am/pm text:
         ampm.text(now[7]+now[8]);
         // Schedule this function to be run again in 1 sec
+
+        if(ad_flag == 1){
+            if(now[4]==0 && now[5] == 0){
+                // 每過一分鐘+一個空白
+                var table = document.getElementById("myTable");
+                var length = table.rows.length;
+                var row = table.insertRow(1);
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                cell1.innerHTML = moment().format("hh:mm");
+                cell2.innerHTML = document.getElementById('input-text-id').value;
+                var btn_edit = document.createElement('a');
+                btn_edit.setAttribute('class', 'button btn_edit');
+                btn_edit.setAttribute('id', length);
+                btn_edit.innerHTML = "編輯";
+                cell3.appendChild(btn_edit);
+            }
+        }
+        
         setTimeout(update_time, 1000);
     })();
 
@@ -79,11 +101,56 @@ $(function(){
         now_hr = moment().format("hh");
         now_mm = moment().format("mm");
         start_flag = 1;
+        var p = document.getElementById("begin_txt");
+        p.innerHTML = '開始紀錄的時間為 ' + now_hr + ' 點 ' + now_mm + ' 分';
+        $(this).remove();
     });
 
     // Switch the theme
     $('a.btn_ad_start').click(function(){
-        clock.toggleClass('light dark');
+        if(start_flag==0){
+            alert('先按開始工作');
+        } else{
+            if(ad_flag==0){
+                // 如果目前時間有文字就不會再加空白
+                var table = document.getElementById("myTable");
+                var length = table.rows.length;
+                if(length != 1){
+                    ad_flag = 1;
+                    clock.toggleClass('light dark');
+                    var row = table.getElementsByTagName('tr')[1];
+                    var cell = row.getElementsByTagName('td')[0].innerHTML;
+                    var digit1 = parseInt(cell[0] + cell[1] + cell[3] + cell[4]);
+                    var digit2 = parseInt(moment().format("hhmm"));
+                    if(digit1 < digit2){
+                        var row = table.insertRow(1);
+                        var cell1 = row.insertCell(0);
+                        var cell2 = row.insertCell(1);
+                        var cell3 = row.insertCell(2);
+                        cell1.innerHTML = moment().format("hh:mm");
+                        cell2.innerHTML = document.getElementById('input-text-id').value;
+                        var btn_edit = document.createElement('a');
+                        btn_edit.setAttribute('class', 'button btn_edit');
+                        btn_edit.setAttribute('id', length);
+                        btn_edit.innerHTML = "編輯";
+                        cell3.appendChild(btn_edit);
+                    }
+                } else {
+                    alert('一開始不會就廣告了吧...');
+                }
+            }
+        }
+    });
+
+    $('a.btn_ad_end').click(function(){
+        if(start_flag==0){
+            alert('先按開始工作')
+        } else{
+            if(ad_flag==1){
+                ad_flag = 0;
+                clock.toggleClass('light dark');
+            }
+        }
     });
 
     function padLeadingZeros(num, size) {
@@ -92,20 +159,18 @@ $(function(){
         return s;
     }
 
+
     $('a.btn_enter').click(function(){
         if(start_flag==0){
-            alert('先按開始工作~')
+            alert('先按開始工作')
         } else{
             var table = document.getElementById("myTable");
             var length = table.rows.length;
-            // Create an empty <tr> element and add it to the 1st position of the table:
-            var row = table.insertRow(length);
-            // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+            var row = table.insertRow(1);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
             // Text
-            console.log(now_mm, now_hr)
             cell1.innerHTML = now_hr + ':' + now_mm;
             cell2.innerHTML = document.getElementById('input-text-id').value;
             // Change Time
@@ -126,11 +191,13 @@ $(function(){
             // console.log(allButtons.length)
         }
     });
+    
 
     $('.logs-holder').on('click', 'a.btn_edit', function(){
         var num = $(this).attr('id');
         var table = document.getElementById("myTable");
-        var row = table.getElementsByTagName('tr')[num];
+        var length = table.rows.length;
+        var row = table.getElementsByTagName('tr')[length-num];
         var cell = row.getElementsByTagName('td')[1];
         var text = cell.innerHTML;
         cell.innerHTML = '';
@@ -144,7 +211,8 @@ $(function(){
     $('.logs-holder').on('click', 'a.btn_ok', function(){
         var num = $(this).attr('id');
         var table = document.getElementById("myTable");
-        var row = table.getElementsByTagName('tr')[num];
+        var length = table.rows.length;
+        var row = table.getElementsByTagName('tr')[length-num];
         var cell = row.getElementsByTagName('td')[1];
         var text = cell.childNodes[0].value;
         cell.removeChild(cell.childNodes[0])
@@ -156,18 +224,32 @@ $(function(){
     $('a.btn_copy').click(function(){
         var table = document.getElementById("myTable");
         var length = table.rows.length;
-        var final_str = '';
-        for (var i = length-1; i >= 1; i--){
-            var x = table.rows[i].cells[1].innerHTML;
-            final_str = final_str.concat(x)
-            final_str = final_str.concat('\n')
+        if(length==1){
+            alert('空空如也，沒得複製')
+        } else{
+            var final_str = '';
+            var input_flag = 0;
+            for (var i = 1; i <= length-1; i++){
+                console.log(table.rows[i].cells[1].children[0]);
+                if(table.rows[i].cells[1].children[0]){
+                    alert('有文字還沒編輯完成喔');
+                    input_flag = 1;
+                    break;
+                }
+                var x = table.rows[i].cells[1].innerHTML;
+                final_str = final_str.concat(x)
+                final_str = final_str.concat('\n')
+            }
+            if(input_flag == 0){
+                const el = document.createElement('textarea');
+                el.value = final_str;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('文字複製好了，貼出去就收工')
+            }
         }
-        const el = document.createElement('textarea');
-        el.value = final_str;
-        document.body.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        document.body.removeChild(el);
-        alert('文字複製好囉~')
     });
+
 });
