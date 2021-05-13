@@ -85,21 +85,20 @@ $(function(){
         setTimeout(update_time, 1000);
     })();
 
-    var now_hr, now_mm;
+    var record_time;
     var start_flag = 0;
-    $('a.btn_start').click(function(){
-        now_hr = moment().format("hh");
-        now_mm = moment().format("mm");
-        start_flag = 1;
-        var p = document.getElementById("begin_txt");
-        p.innerHTML = '開始紀錄的時間為 ' + now_hr + ' 點 ' + now_mm + ' 分';
-        $(this).remove();
-    });
+    // $('a.btn_start').click(function(){
+    //     start_time = moment();
+    //     start_flag = 1;
+    //     var p = document.getElementById("begin_txt");
+    //     p.innerHTML = '開始紀錄的時間為 ' + start_time.format('hh 點 mm 分');
+    //     $(this).remove();
+    // });
 
     // Switch the theme
     $('a.btn_ad_start').click(function(){
         if(start_flag==0){
-            alert('先按開始工作');
+            alert('請先輸入第一筆資料並點擊送出鍵');
         } else{
             if(ad_flag==0){
                 // 如果目前時間有文字就不會再加空白
@@ -119,26 +118,27 @@ $(function(){
 
     $('a.btn_ad_end').click(function(){
         if(start_flag==0){
-            alert('先按開始工作')
+            alert('請先輸入第一筆資料並點擊送出鍵')
         } else{
             if(ad_flag==1){
                 ad_flag = 0;
                 clock.toggleClass('light dark');
 
-                ///
+                var ad_end_time = moment();
+                var m = ad_end_time.diff(record_time, 'minutes');
+                console.log(ad_end_time.format('hh:mm'), record_time.format('hh:mm'))
+                console.log(m)
+
                 var table = document.getElementById("myTable");
                 var length = table.rows.length;
-                var row = table.getElementsByTagName('tr')[1];
-                var cell = row.getElementsByTagName('td')[0].innerHTML;
-                var digit1 = parseInt(cell[0] + cell[1] + cell[3] + cell[4]);
-                var digit2 = parseInt(moment().format("hhmm"));
-                for(i=digit1+1; i <= digit2; i++){
+               
+                for(i=1; i <=m; i++){
                     var row = table.insertRow(1);
                     var cell1 = row.insertCell(0);
                     var cell2 = row.insertCell(1);
                     var cell3 = row.insertCell(2);
-                    var str = padLeadingZeros(i, 4);
-                    cell1.innerHTML = str[0] + str[1] + ':' + str[2] + str[3];
+                    record_time = record_time.add(1, 'minutes')
+                    cell1.innerHTML = record_time.format('hh:mm');
                     cell2.innerHTML = document.getElementById('input-text-id').value;
                     var btn_edit = document.createElement('a');
                     btn_edit.setAttribute('class', 'button btn_edit');
@@ -147,10 +147,6 @@ $(function(){
                     cell3.appendChild(btn_edit);
                     length += 1;
                 }
-                console.log(digit1, digit2)
-
-                now_hr = parseInt(moment().format("hh"));
-                now_mm = parseInt(moment().format("mm")) + 1;
             } else{
                 alert('先按廣告開始');
             }
@@ -161,9 +157,7 @@ $(function(){
 
 
     $('a.btn_enter').click(function(){
-        if(start_flag==0){
-            alert('先按開始工作')
-        } else if(ad_flag==1){
+        if(ad_flag==1){
             alert('先按廣告結束')
         } else{
             var table = document.getElementById("myTable");
@@ -172,14 +166,15 @@ $(function(){
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            // Text
-            cell1.innerHTML = now_hr + ':' + now_mm;
+            if (start_flag == 0){
+                start_flag = 1;
+                record_time = moment();
+                cell1.innerHTML = record_time.format('hh:mm');
+            } else{
+                record_time = record_time.add(1, 'minutes')
+                cell1.innerHTML = record_time.format('hh:mm');
+            }
             cell2.innerHTML = document.getElementById('input-text-id').value;
-            // Change Time
-            now_hr = parseInt((parseInt(now_mm)+1) / 60) + parseInt(now_hr);
-            now_mm = (parseInt(now_mm)+1) % 60;
-            now_hr = (now_hr+'').padStart(2, '0');
-            now_mm = (now_mm+'').padStart(2, '0');
             // Btn
             var btn_edit = document.createElement('a');
             btn_edit.setAttribute('class', 'button btn_edit');
