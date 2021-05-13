@@ -1,7 +1,12 @@
 $(function(){
 
-    var ad_flag = 0;
+    function padLeadingZeros(num, size) {
+        var s = num+"";
+        while (s.length < size) s = "0" + s;
+        return s;
+    }
 
+    var ad_flag = 0;
     // Cache some selectors
     var clock = $('#clock'),
         alarm = clock.find('.alarm'),
@@ -77,26 +82,6 @@ $(function(){
         //     // console.log("!!!!")
         //     window.navigator.vibrate(200);
         // }
-
-        if(ad_flag == 1){
-            if(now[4]==0 && now[5] == 0){
-                // 每過一分鐘+一個空白
-                var table = document.getElementById("myTable");
-                var length = table.rows.length;
-                var row = table.insertRow(1);
-                var cell1 = row.insertCell(0);
-                var cell2 = row.insertCell(1);
-                var cell3 = row.insertCell(2);
-                cell1.innerHTML = moment().format("hh:mm");
-                cell2.innerHTML = document.getElementById('input-text-id').value;
-                var btn_edit = document.createElement('a');
-                btn_edit.setAttribute('class', 'button btn_edit');
-                btn_edit.setAttribute('id', length);
-                btn_edit.innerHTML = "編輯";
-                cell3.appendChild(btn_edit);
-            }
-        }
-        
         setTimeout(update_time, 1000);
     })();
 
@@ -123,26 +108,11 @@ $(function(){
                 if(length != 1){
                     ad_flag = 1;
                     clock.toggleClass('light dark');
-                    var row = table.getElementsByTagName('tr')[1];
-                    var cell = row.getElementsByTagName('td')[0].innerHTML;
-                    var digit1 = parseInt(cell[0] + cell[1] + cell[3] + cell[4]);
-                    var digit2 = parseInt(moment().format("hhmm"));
-                    if(digit1 < digit2){
-                        var row = table.insertRow(1);
-                        var cell1 = row.insertCell(0);
-                        var cell2 = row.insertCell(1);
-                        var cell3 = row.insertCell(2);
-                        cell1.innerHTML = moment().format("hh:mm");
-                        cell2.innerHTML = document.getElementById('input-text-id').value;
-                        var btn_edit = document.createElement('a');
-                        btn_edit.setAttribute('class', 'button btn_edit');
-                        btn_edit.setAttribute('id', length);
-                        btn_edit.innerHTML = "編輯";
-                        cell3.appendChild(btn_edit);
-                    }
                 } else {
                     alert('一開始不會就廣告了吧...');
                 }
+            } else{
+                alert('已經廣告囉');
             }
         }
     });
@@ -154,20 +124,47 @@ $(function(){
             if(ad_flag==1){
                 ad_flag = 0;
                 clock.toggleClass('light dark');
+
+                ///
+                var table = document.getElementById("myTable");
+                var length = table.rows.length;
+                var row = table.getElementsByTagName('tr')[1];
+                var cell = row.getElementsByTagName('td')[0].innerHTML;
+                var digit1 = parseInt(cell[0] + cell[1] + cell[3] + cell[4]);
+                var digit2 = parseInt(moment().format("hhmm"));
+                for(i=digit1+1; i <= digit2; i++){
+                    var row = table.insertRow(1);
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var str = padLeadingZeros(i, 4);
+                    cell1.innerHTML = str[0] + str[1] + ':' + str[2] + str[3];
+                    cell2.innerHTML = document.getElementById('input-text-id').value;
+                    var btn_edit = document.createElement('a');
+                    btn_edit.setAttribute('class', 'button btn_edit');
+                    btn_edit.setAttribute('id', length);
+                    btn_edit.innerHTML = "編輯";
+                    cell3.appendChild(btn_edit);
+                    length += 1;
+                }
+                console.log(digit1, digit2)
+
+                now_hr = parseInt(moment().format("hh"));
+                now_mm = parseInt(moment().format("mm")) + 1;
+            } else{
+                alert('先按廣告開始');
             }
         }
     });
 
-    function padLeadingZeros(num, size) {
-        var s = num+"";
-        while (s.length < size) s = "0" + s;
-        return s;
-    }
+    
 
 
     $('a.btn_enter').click(function(){
         if(start_flag==0){
             alert('先按開始工作')
+        } else if(ad_flag==1){
+            alert('先按廣告結束')
         } else{
             var table = document.getElementById("myTable");
             var length = table.rows.length;
