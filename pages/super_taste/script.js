@@ -140,7 +140,7 @@ $(function(){
                     var cell3 = row.insertCell(2);
                     record_time = record_time.add(1, 'minutes')
                     cell1.innerHTML = record_time.format('hh:mm');
-                    cell2.innerHTML = document.getElementById('input-text-id').value;
+                    cell2.innerHTML = '';
                     var btn_edit = document.createElement('a');
                     btn_edit.setAttribute('class', 'button btn_edit');
                     btn_edit.setAttribute('id', length);
