@@ -125,9 +125,10 @@ $(function(){
                 clock.toggleClass('light dark');
 
                 var ad_end_time = moment();
-                var m = ad_end_time.diff(record_time, 'minutes');
-                console.log(ad_end_time.format('hh:mm'), record_time.format('hh:mm'))
-                console.log(m)
+                var m = ad_end_time.minutes() - record_time.minutes();
+                // console.log(ad_end_time.format('hh:mm'), record_time.format('hh:mm'))
+                // console.log(m)
+                // console.log(ad_end_time.minutes())
 
                 var table = document.getElementById("myTable");
                 var length = table.rows.length;
@@ -227,7 +228,7 @@ $(function(){
             var final_str = '';
             var input_flag = 0;
             for (var i = 1; i <= length-1; i++){
-                console.log(table.rows[i].cells[1].children[0]);
+                // console.log(table.rows[i].cells[1].children[0]);
                 if(table.rows[i].cells[1].children[0]){
                     alert('有文字還沒編輯完成喔');
                     input_flag = 1;
