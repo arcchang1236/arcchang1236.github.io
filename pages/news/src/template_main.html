@@ -11,23 +11,13 @@
 
 <body>
   <ul title="Stock News Everyday">
-    
-      
-        <li><a class="todaya" href="daily\20230522.html">20230522</a> <img src="today.jpg"></li>
-      
-    
-      
-        <li><a href="daily\20230519.html">20230519</a></li>
-      
-    
-      
-        <li><a href="daily\20230518.html">20230518</a></li>
-      
-    
-      
-        <li><a href="daily\20230517.html">20230517</a></li>
-      
-    
+    {% for date, link in bundles.items() %}
+      {% if loop.index == 1 %}
+        <li><a class="todaya" href="{{ link }}">{{date}}</a> <img src="today.jpg"></li>
+      {% else %}
+        <li><a href="{{ link }}">{{date}}</a></li>
+      {% endif %}
+    {% endfor %}
   </ul>
 </body>
 

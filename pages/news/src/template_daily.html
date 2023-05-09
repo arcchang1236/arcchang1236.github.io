@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style_daily.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+  <link rel="shortcut icon" href="../src/icon.png">
+  <title> {{title}} </title>
+</head>
+
+<body>
+  <section>
+    <ol style="--length: {{ total_idx }}" role="list">
+    {% for idx, news in bundles.items() %}
+      <li style="--i: {{ idx }}">
+        <h3>{{ news['title'] }}</h3>
+        <p>
+        {% for val in news['keywords_stock'] %}
+          <button class='but_stock' type="button"> <strong>{{val}}</strong> </button>
+        {% endfor %}
+        </p>
+        <p>
+        {% for val in news['keywords_good'] %}
+          <button class='but_good' type="button"> <strong>{{val}}</strong> </button>
+        {% endfor %}
+        </p>
+        <p>
+        {% for val in news['keywords_bad'] %}
+          <button class='but_bad' type="button"> <strong>{{val}}</strong> </button>
+        {% endfor %}
+        </p>
+        <p class="link_p">新聞連結: <a href="{{ news['link'] }}">{{ news['link'] }}</a></p>
+        <p class="time_p">{{ news['time'] }}</p>
+        <p>{{ news['content'] }}</p>
+      </li>
+    {% endfor %}
+    </ol>
+  </section>
+</body>
+
+</html>
