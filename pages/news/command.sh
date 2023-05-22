@@ -1,12 +1,9 @@
-#!/bin/sh
-conda activate py37
+# conda activate py36
 
-# $ROOT = ''
-cd $ROOT/arcchang1236.github.io
-cd pages/news
+cd /c/Users/User/Desktop/code/arcchang1236.github.io/pages/news
 python generate_news.py
 
-cd $ROOT/arcchang1236.github.io
+cd /c/Users/User/Desktop/code/arcchang1236.github.io
 git add .
 git commit -am "Generate news automately - $(date +"%Y.%m.%d")"
-git push origin master
+ping www.github.com && git push origin --all || echo "not connected"
