@@ -1,5 +1,3 @@
-# conda activate py36
-
 cd /c/Users/User/Desktop/code/arcchang1236.github.io/pages/news
 python generate_news.py
 
