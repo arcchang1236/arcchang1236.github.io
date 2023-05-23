@@ -99,7 +99,7 @@ h3::before {
 }
 
 .keywords_stock {
-	color: purple
+	color: grey
 }
 
 .keywords_good {
@@ -110,12 +110,15 @@ h3::before {
 	color: green
 }
 
+.keywords_info {
+	color: navy
+}
+
 .but_stock {
-	background-color:purple;
+	background-color:grey;
 	color: #fff;
 	border:none;
 	border-radius:10px;
-	background-size: cover;
 }
 
 .but_good {
@@ -132,11 +135,22 @@ h3::before {
 	border-radius:10px;
 }
 
+.but_info {
+	background-color: navy;
+	color: #fff;
+	border:none;
+	border-radius:10px;
+}
+
 .link_p {
-	font-size: 0.85rem;
+	font-size: 0.55rem;
 }
 
 .time_p {
-	font-size: 0.85rem;
+	font-size: 0.55rem;
 	font-style: italic;
+}
+
+.content_p {
+	font-size: 0.85rem;
 }

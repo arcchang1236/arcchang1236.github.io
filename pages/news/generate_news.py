@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Schedule to generate "{Date}.html" of news at 22:55 every day
-# Schedule to git push the html to update the website at 23:00 every day
+# Use Window Task Scheduler
 
 import os
 import re
@@ -26,12 +25,15 @@ with open('src/keywords_good.txt', encoding='utf-8') as f:
 with open('src/keywords_bad.txt', encoding='utf-8') as f:
   keywords['bad'] = f.read().splitlines()
 
+with open('src/keywords_info.txt', encoding='utf-8') as f:
+  keywords['info'] = f.read().splitlines()
+
 ### Open JSON
 stock_id_name_dict = json.load(open('./src/stock_id_name.json', 'r', encoding='utf-8'))
 
 def mark_ghen_txt(data, txt, keywords):
   ### Strong the normal string
-  data['keywords_stock'], data['keywords_good'], data['keywords_bad'] = [], [], []
+  data['keywords_stock'], data['keywords_good'], data['keywords_bad'], data['keywords_info'] = [], [], [], []
   RE_STR = ['\d\d\d\d-TW'] # [TODO] ID 對應股名 (read excel?)
   for re_str in RE_STR:
     for substr in re.findall(re_str, txt):
@@ -51,6 +53,11 @@ def mark_ghen_txt(data, txt, keywords):
       if substr not in data['keywords_bad']:
         data['keywords_bad'].append(substr)
       txt = txt.replace(substr, f'<strong class="keywords_bad">{substr}</strong>')
+  for substr in keywords['info']:
+    if substr in txt:
+      if substr not in data['keywords_info']:
+        data['keywords_info'].append(substr)
+      txt = txt.replace(substr, f'<strong class="keywords_info">{substr}</strong>')
   ### Replace Bad string with another class
   return data, txt
 
@@ -71,14 +78,14 @@ for idx, news in enumerate(soup.find_all('a', {'class', '_1Zdp'})):
   txt = ''
   for line in soup2.find_all('p',  attrs={'class': None, 'data-reactid': None}):
     txt += (line.text).replace('\n', '')
-  
+
   data_news = {}
   data_news, txt = mark_ghen_txt(data_news, txt, keywords)
   data_news['title'] = u'%s' % (news['title'])
   data_news['link'] = link
   data_news['time'] = news.find('time')['datetime']
   data_news['content'] = u'%s' % (txt)
-  
+
   data[idx+1] = data_news
 
 total_idx = idx+1

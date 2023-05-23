@@ -17,8 +17,8 @@
       <li style="--i: {{ idx }}">
         <h3>{{ news['title'] }}</h3>
         <p>
-        {% for val in news['keywords_stock'] %}
-          <button class='but_stock' type="button"> <strong>{{val}}</strong> </button>
+        {% for val in news['keywords_info'] %}
+          <button class='but_info' type="button"> <strong>{{val}}</strong> </button>
         {% endfor %}
         </p>
         <p>
@@ -31,9 +31,14 @@
           <button class='but_bad' type="button"> <strong>{{val}}</strong> </button>
         {% endfor %}
         </p>
+        <p>
+        {% for val in news['keywords_stock'] %}
+          <button class='but_stock' type="button"> <strong>{{val}}</strong> </button>
+        {% endfor %}
+        </p>
         <p class="link_p">新聞連結: <a href="{{ news['link'] }}">{{ news['link'] }}</a></p>
         <p class="time_p">{{ news['time'] }}</p>
-        <p>{{ news['content'] }}</p>
+        <p class="content_p">{{ news['content'] }}</p>
       </li>
     {% endfor %}
     </ol>
